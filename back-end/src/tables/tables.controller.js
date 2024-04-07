@@ -1,4 +1,4 @@
-const service = require("./tables/service");
+const service = require("./tables.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 
 async function validateData (request, response, next) {
