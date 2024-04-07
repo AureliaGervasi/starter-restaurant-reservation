@@ -2,6 +2,12 @@ const knex = require("../db/connection");
 
 function create(table) {
     return knex("tables")
+        .insert(table)
+        .returning("*");
+}
+
+function read (table_id) {
+    return knex("tables")
         .select("*")
         .where({ table_id: table_id })
         .first();
