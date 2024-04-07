@@ -1,5 +1,5 @@
 const service = require("./reservations.service");
-const asyncErrorBoudary = require("../errirs/asyncErrorBoundary");
+const asyncErrorBoudary = require("../errors/asyncErrorBoundary");
 
 // validate resources //
 
