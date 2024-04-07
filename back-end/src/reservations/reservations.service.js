@@ -1,4 +1,4 @@
-const knex = requre("../db/connection");
+const knex = require("../db/connection");
 
 //insert new reservation row
 function create (reservation) {
