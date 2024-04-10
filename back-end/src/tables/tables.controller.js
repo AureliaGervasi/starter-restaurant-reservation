@@ -128,7 +128,7 @@ module.exports = {
         asyncErrorBoundary(validateBody),
         asyncErrorBoundary(create),
     ],
-    udpate: [
+    update: [
         asyncErrorBoundary(validateData),
         asyncErrorBoundary(validateTableId),
         asyncErrorBoundary(validateReservationId),

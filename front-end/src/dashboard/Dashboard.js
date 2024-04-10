@@ -4,7 +4,7 @@ import React from "react";
 import { getDisplayDate } from "../utils/date-time";
 import ErrorAlert from "../layout/ErrorAlert";
 import Buttons from "./Buttons";
-import DisplayReservation from "../reservations/displayReservation";
+import DisplayReservation from "../reservations/DisplayReservation";
 import DisplayTable from "../tables/DisplayTable";
 
 /**

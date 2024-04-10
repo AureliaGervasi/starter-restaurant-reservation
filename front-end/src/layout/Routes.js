@@ -4,10 +4,10 @@ import { Redirect, Route, Switch, useHistory, useLocation } from "react-router-d
 import Dashboard from "../dashboard/Dashboard";
 import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
-import useQuery from '..utils/useQuery';
+import useQuery from '../utils/useQuery';
 import { listReservations, listTables } from "../utils/api";
 import NewTable from '../tables/NewTable';
-import { seatReservation } from "../utils/api";
+import SeatReservation from "../reservations/SeatReservation";
 import Search from '../search/Search';
 import NewReservation from '../reservations/NewReservation';
 import EditReservation from '../reservations/EditReservation';
@@ -35,7 +35,7 @@ function Routes() {
   useEffect(() => {
     setDate("");
     if (query.get("date")) {
-      setDate(quiery.get("date"));
+      setDate(query.get("date"));
     } else {
       if (location.pathname === "/dashboard")
       history.push(`/dashboard?date=${today()}`);

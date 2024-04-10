@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import formatPhoneNumber from "../utils/phoneNumberFormatter";
+import formatPhoneNumber from "../utils/format-phone-number";
 
 const ReservationForm = ({
     handleSubmit, 
