@@ -1,80 +1,125 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import ErrorAlert from "../layout/ErrorAlert";
-import { listReservations } from "../utils/api";
-import DisplayReservation from "../reservations/DisplayReservation";
+import { listReservations, cancelReservation } from "../utils/api";
+import ListReservations from "../reservations/ListReservations";
 
 export default function Search() {
-    const [mobileNumber, setMobileNumber] = useState("");
-    const [reservations, setReservations] = useState([]);
-    const [error, setError] = useState(null);
-    const history = useHistory();
+  const initialFormState = {
+    mobile_number: "",
+  };
 
-    function handleChange({ target }) {
-        setMobileNumber(target.value);
+  const [foundReservations, setFoundReservations] = useState([]);
+  const [formData, setFormData] = useState({ ...initialFormState });
+  const [foundReservationsError, setFoundReservationsError] = useState(null);
+  const [displayResults, setDisplayResults] = useState(false);
+
+  const handleChange = ({ target }) => {
+    let value = target.value;
+
+    setFormData({
+      ...formData,
+      [target.name]: value,
+    });
+  };
+
+  async function findReservations() {
+    const abortController = new AbortController();
+    try {
+      const { mobile_number } = formData;
+      const data = await listReservations(
+        { mobile_number },
+        abortController.signal
+      );
+      setFoundReservations([...data]);
+    } catch (error) {
+      setFoundReservationsError(error);
     }
+    return () => abortController.abort();
+  }
 
-    function handleSubmit(event) {
-        event.preventDefault();
-        const abortController = new AbortController();
-        setError(null);
+  const handleFind = () => {
+    findReservations();
+    setDisplayResults(true);
+  };
 
-        listReservations({ mobile_number: mobileNumber }, abortController.signal)
-        .then(setReservations)
-        .catch(setError);
-
-        return () => abortController.abort();
+  const handleCancel = (reservation_id) => {
+    const abortController = new AbortController();
+    async function cancel() {
+      try {
+        await cancelReservation(reservation_id, abortController.signal);
+      } catch (error) {
+        setFoundReservationsError(error);
+      }
     }
+    cancel().then(handleFind);
+    return () => abortController.abort();
+  };
 
-    const searchResultsJSX = () => {
-        return reservations.map((reservation) => (
-        <DisplayReservation
-            key={reservation.reservation_id}
-            reservation={reservation}
-        />
-        ))
-    };
-
-    return (
-        <div className='row justify-content-center'>
-            <h1 className='text-center py-4'>Search Reservations</h1>
-
-            <form className='col-lg-10'>
-                <ErrorAlert error={error} />
-                <div className='form-group'>
-                    <input
-                        className='form-control'
-                        name="mobile_number"
-                        id="mobile_number"
-                        type="tel"
-                        placeholder="Enter a customer's phone number"
-                        onChange={handleChange}
-                        value={FormData.mobile_number}
-                        required
-                    />
-                    <button
-                        className="btn btn-xs btn-dark btn-outline-light mt-4 w-10"
-                        type="submit"
-                        onClick={handleSubmit}
-                    >
-                        Find
-                    </button>
-                    <button
-                        className="btn btn-xs btn-cancel text-dark btn-outline-light mt-4 mx-2 w-10"
-                        type="button"
-                        onClick={history.goBack}
-                    >
-                                Cancel
-                    </button>
-                </div>
-            
-                <div>{searchResultsJSX()}</div>
-                <div className="text-center">
-                    {reservations.length === 0 && (
-                    <h5 className='text-white mt-3'>No reservations found</h5>
-                    )}
-                </div>
-            </form>
+  return (
+    <>
+      {displayResults ? (
+        <div className="row">
+          <h1>Found Resevations</h1>
+          <div>
+            <button
+              type="button"
+              className="btn btn-primary ml-3 mt-2"
+              onClick={() => {
+                setFoundReservations([]);
+                setFormData({ ...initialFormState });
+                setDisplayResults(false);
+              }}
+            >
+              New Search
+            </button>
+          </div>
         </div>
-    );
+      ) : (
+        <h1>Search</h1>
+      )}
+      <ErrorAlert error={foundReservationsError} />
+      {displayResults ? (
+        <ListReservations
+          reservations={foundReservations}
+          handleCancel={handleCancel}
+        />
+      ) : (
+        <div className="row">
+          <div className="col">
+              <form id="searchForm">
+                <div className="form-row">
+                  <div className="col">
+                    <label className="form-label" htmlFor="mobile_number">
+                      Mobile Number
+                    </label>
+                    <input
+                      id="mobile_number"
+                      name="mobile_number"
+                      type="tel"
+                      pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                      className="form-control"
+                      placeholder="Enter a customer's phone number"
+                      required
+                      onChange={handleChange}
+                      value={formData.mobile_number}
+                    />
+                  </div>
+                </div>
+              </form>
+          </div>
+          <div className="col">
+            <p className="form-label pb-3"></p>
+            <button
+              form="searchForm"
+              type="submit"
+              className="btn btn-primary"
+              onClick={handleFind}
+            >
+              Find
+            </button>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
