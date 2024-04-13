@@ -121,7 +121,7 @@ async function read (request, response, next) {
 }
 
 async function list(request, response, next) {
-  response.json({ data: response.locals.reservation });
+  response.json({ data: response.locals.reservations });
 }
 
 async function create (request, response) {
