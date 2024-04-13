@@ -6,7 +6,7 @@ import {
   cancelReservation,
 } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
-import ListReservations from "../reservations/ListReservations"
+import ListReservations from "../reservations/ListReservation"
 import ListTables from "../tables/ListTable";
 import { useHistory } from "react-router-dom";
 import { previous, next } from "../utils/date-time";

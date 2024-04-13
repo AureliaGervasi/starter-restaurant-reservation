@@ -1,14 +1,14 @@
 import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Dashboard from "../dashboard/Dashboard";
-import CreateReservations from "../reservations/CreateReservations";
+import CreateReservations from "../reservations/CreateReservation";
 import SeatReservations from "../reservations/SeatReservations";
 import CreateTable from "../tables/CreateTable";
 import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
 import useQuery from "../utils/useQuery";
 import Search from "../search/Search";
-import EditReservations from "../reservations/EditReservations";
+import EditReservations from "../reservations/EditReservation";
 
 function Routes() {
   const query = useQuery();

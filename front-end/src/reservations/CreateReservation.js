@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ErrorAlert from "../layout/ErrorAlert";
 import { createReservation } from "../utils/api";
 import { useHistory } from "react-router-dom";
-import ReservationsCard from "./ReservationsCard";
+import ReservationsCard from "./ReservationCard";
 
 export default function CreateReservations() {
   const history = useHistory();

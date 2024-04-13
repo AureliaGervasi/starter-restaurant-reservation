@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { readReservation, updateReservation } from "../utils/api";
 import ErrorAlert from "../layout/ErrorAlert";
-import ReservationsCard from "../reservations/ReservationsCard";
+import ReservationsCard from "../reservations/ReservationCard";
 
 export default function EditReservations() {
   let { reservation_id } = useParams();

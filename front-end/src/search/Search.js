@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ErrorAlert from "../layout/ErrorAlert";
 import { listReservations, cancelReservation } from "../utils/api";
-import ListReservations from "../reservations/ListReservations";
+import ListReservations from "../reservations/ListReservation";
 
 export default function Search() {
   const initialFormState = {
