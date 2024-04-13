@@ -99,7 +99,7 @@ async function reservationExists (request, response, next) {
     const found = await service.read(reservation_id);
 
     if (found) {
-      res.locals.reservation = found;
+      response.locals.reservation = found;
       return next();
     } else {
       next({ status: 404, message: `Reservation ${reservation_id} does not exist` });

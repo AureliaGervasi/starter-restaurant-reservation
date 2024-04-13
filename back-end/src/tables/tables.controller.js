@@ -28,8 +28,8 @@ async function tableExists (request, response, next) {
     next();
 }
 
-async function validTableName(req, res, next) {
-    const { table_name } = req.body.data;
+async function validTableName(request, response, next) {
+    const { table_name } = request.body.data;
     if(table_name.length <= 1){
       next({
         status: 400,
@@ -39,8 +39,8 @@ async function validTableName(req, res, next) {
     next();
 }
 
-async function validCapacity(req, res, next){
-    const { capacity } = req.body.data;
+async function validCapacity(request, response, next){
+    const { capacity } = request.body.data;
     if(capacity <= 0 || typeof capacity !== "number"){
       next({
         status: 400,
