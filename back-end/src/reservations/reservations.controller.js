@@ -1,5 +1,5 @@
 const service = require("./reservations.service");
-const asyncErrorBoudary = require("../errors/asyncErrorBoundary");
+const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const hasProperties = require("../errors/hasProperties");
 
 // validate resources //
@@ -106,8 +106,8 @@ async function reservationExists (request, response, next) {
   }
 }
 
-function resBooked(req, res, next) {
-  const { status } = req.body.data;
+function resBooked(request, response, next) {
+  const { status } = request.body.data;
   if (!status || status === "booked") next();
   else
     next({
