@@ -1,52 +1,43 @@
 const knex = require("../db/connection");
 
-//insert new reservation row
-function create (reservation) {
-    return knex("reservations")
-        .insert(reservation)
-        .returning("*");
-}
-
-//reads reservation using reservation id
-function read (reservation_id) {
+function list (date) {
     return knex("reservations")
         .select("*")
-        .where({ reservation_id: reservation_id })
+        .where({ reservation_date: date })
+        .whereNot({ status: "finished" })
+        .orderBy("reservation_time");
+}
+
+function read (reservation_id) {
+    return knex("reservations")
+        //.select("*")
+        .where({ reservation_id })
         .first();
 }
 
-//function updates reservation using reservation id
-function update (reservation_id, status) {
+function create (reservation) {
     return knex("reservations")
-        .where({ reservation_id: reservation_id })
-        .update({ status: status });
+        .insert(reservation)
+        .returning("*")
+        .then((created) => created[0]);
 }
 
-//edit reservation using reservation id
-function edit (reservation_id, reservation) {
+function search(mobile_number) {
+    return knex(tableName)
+      .whereRaw("translate(mobile_number, '() -', '') like ?", `%${mobile_number.replace(/\D/g, "")}%`)
+      .orderBy("reservation_date");
+  }
+
+function update (reservation) {
+    return knex("reservations")
+        .where({ reservation_id: reservation.reservation_id })
+        .update( reservation, "*" );
+}
+
+function changeStatus (reservation) {
     return knex ("reservations")
-        .where ({ reservation_id: reservation_id })
-        .update({ ...reservation })
-        .returning("*");
-}
-
-//
-function list (date, mobile_number) {
-    if (date) {
-        return knex("reservations")
-            .select("*")
-            .where ({ reservation_date: date })
-            .orderBy("reservation_time", "asc");
-    }
-
-if (mobile_number) {
-    return knex("reservations")
-        .select("*")
-        .where("mobile_number", "like", `${mobile_number}%`);
-    }
-
-    return knex("reservations")
-        .select("*");
+        .where ({ reservation_id: reservation.reservation_id })
+        .update({ status: reservation.status }, "*");
 }
 
 module.exports = {
@@ -54,5 +45,6 @@ module.exports = {
     create,
     read,
     update,
-    edit,
+    changeStatus,
+    search,
 };
