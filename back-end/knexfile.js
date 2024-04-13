@@ -4,6 +4,13 @@
  * You will not need to make changes to this file.
  */
 
+////// EDIT /////
+
+const dns = require('dns');
+dns.setDefaultResultOrder('ipv4first');
+
+/////////////////
+
 require('dotenv').config();
 const path = require("path");
 
