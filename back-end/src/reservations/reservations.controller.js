@@ -144,8 +144,8 @@ async function changeStatus(request, response, next) {
 
 module.exports = {
   list: [
-    asyncErrorBoudary(queryInput),
-    asyncErrorBoudary(list),
+    asyncErrorBoundary(queryInput),
+    asyncErrorBoundary(list),
   ],
   create: [
     hasProperties("first_name"),
