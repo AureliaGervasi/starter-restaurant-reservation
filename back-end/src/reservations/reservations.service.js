@@ -23,7 +23,7 @@ function create (reservation) {
 }
 
 function search(mobile_number) {
-    return knex(tableName)
+    return knex("reservations")
       .whereRaw("translate(mobile_number, '() -', '') like ?", `%${mobile_number.replace(/\D/g, "")}%`)
       .orderBy("reservation_date");
   }
