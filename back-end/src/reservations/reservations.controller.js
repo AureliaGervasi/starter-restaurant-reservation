@@ -130,7 +130,7 @@ async function create (request, response) {
 }
 
 async function update (request, response, next) {
-  const { reservation_id } = res.locals.reservation;
+  const { reservation_id } = response.locals.reservation;
   const data = await service.update({ ...request.body.data, reservation_id });
 
   response.json({ data: data[0] })
