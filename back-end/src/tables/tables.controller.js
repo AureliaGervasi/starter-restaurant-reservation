@@ -3,38 +3,6 @@ const reservationsService = require("../reservations/reservations.service");
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const hasProperties = require("../errors/hasProperties");
 
-// async function validateData (request, response, next) {
-//     if (!request.body.data) {
-//         return next ({ status: 400, message: "Body must include a data object" });
-//     }
-
-//     next();
-// }
-
-// async function validateBody(request, response, next) {
-//     if (!request.body.data.table_name || request.body.data.table_name === "") {
-//         return next ({ status: 400, message: "'table_name' field cannot be empty" });
-//     }
-
-//     if (request.body.data.table_name.length < 2) {
-//         return next({ status: 400, message: "'table_name' field must be at least 2 characters" });
-//     }
-
-//     if (!request.body.data.capacity || request.body.data.capacity === "") {
-//         return next({ status: 400, message: "'capacity' field cannot be empty" });
-//     }
-
-//     if (typeof request.body.data.capacity !== "number") {
-//         return next ({ status: 400, message: "'capacity' field must be a number" });
-//     }
-
-//     if (request.body.data.capacity < 1) {
-//         return next ({ status: 400, message: "'capacity' field must be at least 1" });
-//     }
-
-//     next();
-// }
-
 async function reservationExists(request, response, next) {
     const { reservation_id } = request.body.data;
     const found = await reservationsService.read(reservation_id);
