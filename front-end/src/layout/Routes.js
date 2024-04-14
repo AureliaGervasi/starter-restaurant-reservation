@@ -8,7 +8,7 @@ import NotFound from "./NotFound";
 import { today } from "../utils/date-time";
 import useQuery from "../utils/useQuery";
 import Search from "../search/Search";
-import EditReservations from "../reservations/EditReservation";
+import EditReservations from "./EditReservation";
 // import EditReservations from "../reservations/EditReservation";
 
 function Routes() {
