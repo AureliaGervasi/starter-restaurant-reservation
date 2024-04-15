@@ -13,10 +13,6 @@ h1, h2 {
   color: white;
 }
 
-form label {
-  background-color: rgba(47, 79, 79, 0.5);
-}
-
 .testing button{
   margin-right: 10px;
 }
@@ -26,9 +22,8 @@ form label {
 }
 
 label {
-  color: white;
+  color: black;
   font-size: 28px;
-  -webkit-text-stroke: 0.5px grey;
 }
 
 table {
