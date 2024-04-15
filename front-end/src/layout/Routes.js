@@ -30,7 +30,7 @@ function Routes() {
         <EditReservations />
       </Route>
       <Route path="/reservations/:reservation_id/seat">
-        <SeatReservations />
+        <SeatReservation />
       </Route>
       <Route path="/reservations/new">
         <CreateReservations />
