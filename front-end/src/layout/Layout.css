@@ -1,17 +1,57 @@
+html,body{
+  height: 100%;
+  background-position: center;
+  background-size: 100%;
+}
 .side-bar {
-  background-color: #20322f;
-  min-width: 200px;
-  height: 100vh;
+  background-color: #393a44;
+  min-width: 325px;
+  height: 100%;
 }
-.btn {
-  margin-right: 5px;
+
+h1, h2 {
+  color: white;
 }
-thead {
-  background-color: #8cdccf;
+
+form label {
+  background-color: rgba(47, 79, 79, 0.5);
 }
-tr:hover {
-  background-color: #8cdccf;
+
+.testing button{
+  margin-right: 10px;
 }
-body {
-  background-color: #56877f;
+
+.overscroll {
+  overflow: scroll; 
+}
+
+label {
+  color: white;
+  font-size: 28px;
+  -webkit-text-stroke: 0.5px grey;
+}
+
+table {
+  margin-top: 20px;
+  font-family: 'Calibri';
+  background-color: beige;
+}
+
+.center {
+  text-align: center;
+}
+
+@media all and (min-width: 992px ){
+
+  .side-bar{
+    min-height: 100vh;
+  }
+
+  .overscroll {
+    overflow: hidden; 
+  }
+
+  .justify-center {
+    justify-content: center;
+  }
 }
