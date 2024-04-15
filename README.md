@@ -3,7 +3,6 @@
 https://starter-restaurant-reservation-1.onrender.com/dashboard
 
 ## Technology Used
-
 ### Frontend
 * ReactJS
 * CSS
@@ -15,7 +14,7 @@ https://starter-restaurant-reservation-1.onrender.com/dashboard
 * Express
 
 ## Summary
-Periodic Tables is a reservation system for fine dining restaurants. The software is used only by restaurant personnel when a customer calls to request a reservation.
+Periodic Tables is a reservation system for fine dining restaurants. The software is used only by restaurant personnel when a customer calls to request a reservation. The restaurant personnel can create, edit, and delete reservations, as well as seat reservations at tables, and manage occupied and free tables.
 
 ## Installation
 
@@ -25,7 +24,6 @@ Periodic Tables is a reservation system for fine dining restaurants. The softwar
 1. Run `npm start` from starter-restaurant-reservation folder
 
 # Features
-
 ## Manage Reservations
 Managing reservations can be done via the Dashboard.
 
