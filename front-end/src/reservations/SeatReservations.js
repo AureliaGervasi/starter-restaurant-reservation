@@ -1,103 +1,93 @@
-export default function ReservationsCard({changeHandler, formData}){
-    return (
-      <>
-        <form id="reservationCard">
-          <div className="form-row">
-            <div className="col-md">
-              <label className="form-label" htmlFor="first_name">
-                First Name
-              </label>
-              <input
-                id="first_name"
-                name="first_name"
-                type="text"
-                className="form-control"
-                placeholder="First name"
-                required
-                onChange={changeHandler}
-                value={formData.first_name}
-              />
-            </div>
-            <div className="col-md">
-              <label className="form-label" htmlFor="last_name">
-                Last Name
-              </label>
-              <input
-                id="last_name"
-                name="last_name"
-                type="text"
-                className="form-control"
-                placeholder="Last name"
-                required
-                onChange={changeHandler}
-                value={formData.last_name}
-              />
-            </div>
-            <div className="col-md">
-              <label className="form-label" htmlFor="mobile_number">
-                Mobile Number
-              </label>
-              <input
-                id="mobile_number"
-                name="mobile_number"
-                type="tel"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                className="form-control"
-                placeholder="xxx-xxx-xxxx"
-                required
-                onChange={changeHandler}
-                value={formData.mobile_number}
-              />
-            </div>
-          </div>
-          <div className="form-row mt-3 mb-3">
-            <div className="col-sm">
-              <label className="form-label" htmlFor="reservation_date">
-                Date
-              </label>
-              <input
-                id="reservation_date"
-                name="reservation_date"
-                type="date"
-                className="form-control"
-                placeholder="mm/dd/yyyy"
-                required
-                onChange={changeHandler}
-                value={formData.reservation_date}
-              />
-            </div>
-            <div className="col-sm">
-              <label className="form-label" htmlFor="reservation_time">
-                Time
-              </label>
-              <input
-                id="reservation_time"
-                name="reservation_time"
-                type="time"
-                className="form-control"
-                required
-                onChange={changeHandler}
-                value={formData.reservation_time}
-              />
-            </div>
-            <div className="col-sm">
-              <label className="form-label" htmlFor="people">
-                Party Size
-              </label>
-              <input
-                id="people"
-                name="people"
-                type="number"
-                className="form-control"
-                placeholder="Party size"
-                required
-                onChange={changeHandler}
-                value={formData.people}
-                min="1"
-              />
-            </div>
-          </div>
-        </form>
-      </>
-    );
+import React, { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { listTables, updateTable } from "../utils/api";
+import ErrorAlert from "../layout/ErrorAlert";
+
+export default function SeatReservation() {
+  let { reservation_id } = useParams();
+
+  const history = useHistory();
+
+  const initialFormState = {
+    table_id: "",
+    reservation_id,
+  };
+
+  const [formData, setFormData] = useState({ ...initialFormState });
+  const [tables, setTables] = useState([]);
+  const [tablesError, setTablesError] = useState(null);
+
+  useEffect(loadTables, []);
+
+  function loadTables() {
+    const abortController = new AbortController();
+    setTablesError(null);
+    listTables(abortController.signal).then(setTables).catch(setTablesError);
+    return () => abortController.abort();
   }
+
+  const changeHandler = ({ target }) => {
+    let value = target.value;
+
+    setFormData({
+      ...formData,
+      [target.name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const abortController = new AbortController();
+    async function seatReservationAtTable() {
+      try {
+        await updateTable({ data: formData }, abortController.signal);
+        history.push(`/dashboard`);
+      } catch (error) {
+        setTablesError(error);
+      }
+    }
+    seatReservationAtTable();
+    return () => abortController.abort();
+  };
+
+  return (
+    <div>
+      <h1>Seat Reservation {reservation_id}</h1>
+      <ErrorAlert error={tablesError} />
+      <form id="seatReservationForm">
+        <div className="form-row">
+          <div className="col-3">
+            <label className="form-label" htmlFor="table_id">
+              Select table for reservation
+            </label>
+            <select
+              id="table_id"
+              name="table_id"
+              className="custom-select mb-3"
+              onChange={changeHandler}
+              value={formData.table_id}
+            >
+              <option defaultValue>Open tables</option>
+              {tables.map(
+                (table) =>
+                  table.reservation_id === null && (
+                    <option key={table.table_id} value={table.table_id}>
+                      {table.table_name} - {table.capacity}
+                    </option>
+                  )
+              )}
+            </select>
+          </div>
+        </div>
+      </form>
+      <button
+        form="seatReservationForm"
+        type="submit"
+        className="btn btn-primary"
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
+    </div>
+  );
+}
