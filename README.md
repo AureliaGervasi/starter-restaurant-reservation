@@ -5,14 +5,14 @@ https://starter-restaurant-reservation-1.onrender.com/dashboard
 ## Technology Used
 
 ### Frontend
-ReactJS
-CSS
-JSX
+* ReactJS
+* CSS
+* JSX
 
 ### Backend
-Postgres (knex)
-NodeJS
-Express
+* Postgres (knex)
+* NodeJS
+* Express
 
 ## Summary
 Periodic Tables is a reservation system for fine dining restaurants. The software is used only by restaurant personnel when a customer calls to request a reservation.
