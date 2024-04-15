@@ -38,22 +38,22 @@ The tables and their availability are listed in a table on the main page.
 ## Create a Reservation
 Creating a reservations is done by clicking 'New Reservation' on the navigation bar.
 
-(./images/createRes.png)
+![Imgur Image](./images/createRes.png)
 
 ## Searching for a Reservation
 Users can search for a particular reservation by the mobile number associated with the reservation. This can be done by clicking the 'Search' option in the left-hand navigation.
 
-(./images/searchRes.png)
+![Imgur Image](./images/searchRes.png)
 
 ## Edit Reservation
 Users can also edit existing reservations if information needs to be changed and updated.
 
-(./images/editRes.png)
+![Imgur Image](./images/editRes.png)
 
 ## Manage Tables
 Expanding the restaurant? Create new tables by selecting the 'New Table' option in the left-hand navigation.
 
-(./images/manageTables.png)
+![Imgur Image](./images/manageTables.png)
 
 # API
 
