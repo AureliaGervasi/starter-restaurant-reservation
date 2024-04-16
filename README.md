@@ -20,8 +20,8 @@ Periodic Tables is a reservation system for fine dining restaurants. The softwar
 
 1. Fork and clone this repository
 1. Run `npm install`
-1. Run `npm reset` from back-end folder to rollback, migrate, and seed the database
-1. Run `npm start` from starter-restaurant-reservation folder
+1. Run `nvm use node 16.20.2`
+1. Run `npm start`
 
 # Features
 ## Manage Reservations

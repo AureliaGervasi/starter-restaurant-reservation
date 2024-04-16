@@ -40,7 +40,7 @@ export default function ReservationsCard({changeHandler, formData}){
               <input
                 id="mobile_number"
                 name="mobile_number"
-                type="tel"
+                type="number"
                 pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                 className="form-control"
                 placeholder="xxx-xxx-xxxx"
