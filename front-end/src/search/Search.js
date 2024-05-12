@@ -112,7 +112,7 @@ export default function Search() {
             <button
               form="searchForm"
               type="submit"
-              className="btn btn-primary find-btn"
+              className="btn btn-primary"
               onClick={handleFind}
             >
               Find
