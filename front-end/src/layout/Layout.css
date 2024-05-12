@@ -62,5 +62,9 @@ table {
   li {
     padding: 20px;
   }
-  
+
+  .navbar-nav {
+    flex-direction: row;
+  }
+
 }
