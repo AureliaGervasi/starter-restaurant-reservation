@@ -13,6 +13,10 @@ h1, h2 {
   color: white;
 }
 
+h4 {
+  padding-top: 10px;
+}
+
 button {
   margin: 5px;
 }
