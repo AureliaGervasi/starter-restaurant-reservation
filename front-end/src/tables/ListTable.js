@@ -3,7 +3,7 @@ import React from "react";
 export default function ListTable({ tables, finishHandler }) {
   return (
     <>
-      <table className="table">
+      <table className="table d-md-flex mb-3 center">
         <thead className="thead">
           <tr>
             <th scope="col">Id</th>
