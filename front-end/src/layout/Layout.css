@@ -17,6 +17,13 @@ button {
   margin: 5px;
 }
 
+.find-btn {
+  margin-top: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 0;
+}
+
 .overscroll {
   overflow: scroll; 
 }
