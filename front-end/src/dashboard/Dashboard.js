@@ -61,7 +61,7 @@ function Dashboard({ date }) {
   return (
     <main>
       <h2>Dashboard</h2>
-      <div className="d-md-flex mb-3">
+      <div className="d-md-flex mb-3 center">
       <button
           type="button"
           className="btn btn-secondary"
