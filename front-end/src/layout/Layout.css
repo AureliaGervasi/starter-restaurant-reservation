@@ -67,4 +67,7 @@ table {
     flex-direction: row;
   }
 
+  .side-bar {
+    height: 140px;
+  }
 }
