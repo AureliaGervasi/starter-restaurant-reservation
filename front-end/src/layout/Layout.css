@@ -65,4 +65,8 @@ table {
   .justify-center {
     justify-content: center;
   }
+
+  .center {
+    text-align: center;
+  }
 }
