@@ -40,7 +40,7 @@ td {
   text-align: center;
 }
 
-@media all and (min-width: 769px ){
+@media all and (max-width: 769px ){
 
   .side-bar{
     min-height: 100vh;
