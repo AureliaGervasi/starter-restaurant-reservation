@@ -30,6 +30,9 @@ table {
   margin: 20px;
   font-family: 'Calibri';
   background-color: rgb(223, 223, 223);
+}
+
+.table {
   width: 95%;
 }
 
