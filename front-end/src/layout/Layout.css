@@ -32,15 +32,19 @@ table {
   background-color: rgb(185, 185, 185);
 }
 
+td {
+  text-align: center;
+}
+
 .center {
   text-align: center;
 }
 
 @media all and (min-width: 769px ){
 
-  .side-bar{
+  /* .side-bar{
     min-height: 100vh;
-  }
+  } */
 
   .overscroll {
     overflow: hidden; 
