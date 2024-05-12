@@ -13,7 +13,7 @@ h1, h2 {
   color: white;
 }
 
-button{
+button {
   margin: 5px;
 }
 
@@ -27,9 +27,9 @@ label {
 }
 
 table {
-  margin-top: 20px;
+  margin: 20px;
   font-family: 'Calibri';
-  background-color: beige;
+  background-color: rgb(185, 185, 185);
 }
 
 .center {
